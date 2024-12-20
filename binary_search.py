@@ -1,6 +1,6 @@
 
 # iterative realisation of binary search algorithm
-def BinarySearch_iterative(target, array):
+def BinarySearch_iterative(array, target):
     left = 0
     right = len(array) - 1
     while right - left >= 1:
@@ -20,7 +20,7 @@ def binarySearch(array, target):
 
 
 # recurcive realisation of binary search algorithm
-def BinarySearch_recursive(target, array, left, right):
+def BinarySearch_recursive(array, target, left, right):
     if right == left:  # exit from recursion
         if target != array[left]:
             return -1  # returns -1, if element not in an array
@@ -29,24 +29,15 @@ def BinarySearch_recursive(target, array, left, right):
     else:  # continuing recursion
         middle = (right + left) // 2
         if target > array[middle]:
-            return BinarySearch_recursive(target, array, middle + 1, right)
+            return BinarySearch_recursive(array, target, middle + 1, right)
         else:
-            return BinarySearch_recursive(target, array, left, middle)
+            return BinarySearch_recursive(array, target, left, middle)
 
 
-'''sorted_sequence = list(map(int, input().split()))  # sequence of elements
+sorted_sequence = list(map(int, input().split()))  # sequence of elements
 query = list(map(int, input().split()))  # sequence of target elements
 for element in query:
     print(
         BinarySearch_iterative(element, sorted_sequence), end=" "
     )  # prints the position of each target element in original sequence'''
 
-l = [2,4,6,8,10,12,14]
-
-
-
-
-
-# 2.1 Prvek v poli NENI, KRAJNI pripady
-print(binarySearch(l,100))  #prvek v poli neni, prvek za mezi pole, vetsi nez nejvetsi prvek
-print(binarySearch(l,1))    #prvek v poli neni, prvek za mezi pole, mensi nez nejmensi prvek'''
