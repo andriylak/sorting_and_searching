@@ -1,6 +1,8 @@
 
 # iterative realisation of binary search algorithm
 def BinarySearch_iterative(array, target):
+    if len(array) == 0:
+        return -1
     left = 0
     right = len(array) - 1
     while right - left >= 1:
@@ -15,12 +17,14 @@ def BinarySearch_iterative(array, target):
 
 
 # helping function for BinarySearch_recursive
-def binarySearch(array, target):
-    return BinarySearch_recursive(target, array, 0, len(array) - 1)
+def BinarySearch_recursive(array, target):
+    if len(array) == 0:
+        return -1
+    return BinarySearch(array, target, 0, len(array) - 1)
 
 
 # recurcive realisation of binary search algorithm
-def BinarySearch_recursive(array, target, left, right):
+def BinarySearch(array, target, left, right):
     if right == left:  # exit from recursion
         if target != array[left]:
             return -1  # returns -1, if element not in an array
@@ -29,15 +33,15 @@ def BinarySearch_recursive(array, target, left, right):
     else:  # continuing recursion
         middle = (right + left) // 2
         if target > array[middle]:
-            return BinarySearch_recursive(array, target, middle + 1, right)
+            return BinarySearch(array, target, middle + 1, right)
         else:
-            return BinarySearch_recursive(array, target, left, middle)
+            return BinarySearch(array, target, left, middle)
 
 
-sorted_sequence = list(map(int, input().split()))  # sequence of elements
-query = list(map(int, input().split()))  # sequence of target elements
-for element in query:
-    print(
-        BinarySearch_iterative(element, sorted_sequence), end=" "
-    )  # prints the position of each target element in original sequence'''
-
+if __name__ == "__main__":
+    sorted_sequence = list(map(int, input().split()))  # sequence of elements
+    query = list(map(int, input().split()))  # sequence of target elements
+    for element in query:
+        print(
+            BinarySearch_iterative(sorted_sequence, element), end=" "
+        )  # prints the position of each target element in original sequence
